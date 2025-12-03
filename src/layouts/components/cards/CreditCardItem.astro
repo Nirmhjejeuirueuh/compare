@@ -1,0 +1,224 @@
+---
+/**
+ * CreditCardItem Component
+ * Displays detailed credit card information with rewards, promotions, and apply button
+ */
+
+import CustomButton from "@/components/CustomButton.astro";
+import OptimizedImage from "@/components/utilities/OptimizedImage.astro";
+
+interface RewardOffer {
+  title: string;
+  description: string;
+  icon?: string;
+  image?: string;
+  badge?: string;
+  points?: string;
+  link?: string;
+}
+
+interface Props {
+  cardImage: string;
+  cardName: string;
+  bankName: string;
+  badges?: string[];
+  primaryReward: {
+    rate: string;
+    description: string;
+  };
+  secondaryReward?: {
+    rate: string;
+    description: string;
+  };
+  tertiaryReward?: {
+    rate: string;
+    description: string;
+  };
+  offers?: RewardOffer[];
+  promotionDetails?: string;
+  promotionExpiry?: string;
+  applyUrl?: string;
+}
+
+const {
+  cardImage,
+  cardName,
+  bankName,
+  badges = [],
+  primaryReward,
+  secondaryReward,
+  tertiaryReward,
+  offers = [],
+  promotionDetails,
+  promotionExpiry,
+  applyUrl = "#",
+} = Astro.props;
+---
+
+<div class="credit-card-item rounded-xl border-2 border-gray-200 bg-white p-6 shadow-sm transition-shadow duration-300 hover:shadow-lg">
+  <!-- Card Header with Badges -->
+  {
+    badges.length > 0 && (
+      <div class="mb-4 flex flex-wrap gap-2">
+        {badges.map((badge) => (
+          <span class="inline-block rounded bg-yellow-400 px-3 py-1 text-xs font-bold uppercase text-gray-900">
+            {badge}
+          </span>
+        ))}
+      </div>
+    )
+  }
+
+  <!-- Card Main Info -->
+  <div class="mb-6 flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
+    <!-- Card Image and Name -->
+    <div class="flex items-center gap-4">
+      <div class="h-24 w-36 flex-shrink-0 overflow-hidden rounded-lg bg-gray-100">
+        <OptimizedImage
+          src={cardImage}
+          alt={cardName}
+          width={144}
+          height={96}
+          class="h-full w-full object-cover"
+        />
+      </div>
+      <div>
+        <h3 class="mb-1 text-xl font-bold text-dark">{cardName}</h3>
+        <p class="text-sm text-gray-600">{bankName}</p>
+      </div>
+    </div>
+
+    <!-- Rewards Info -->
+    <div class="flex flex-wrap gap-4 md:flex-1 md:justify-center">
+      <div class="reward-info flex-1 min-w-[180px] rounded-lg bg-gray-50 p-4">
+        <p class="mb-1 text-2xl font-bold text-primary">{primaryReward.rate}</p>
+        <p class="text-xs text-gray-600">{primaryReward.description}</p>
+      </div>
+      {
+        secondaryReward && (
+          <div class="reward-info flex-1 min-w-[180px] rounded-lg bg-gray-50 p-4">
+            <p class="mb-1 text-2xl font-bold text-dark">
+              {secondaryReward.rate}
+            </p>
+            <p class="text-xs text-gray-600">{secondaryReward.description}</p>
+          </div>
+        )
+      }
+      {
+        tertiaryReward && (
+          <div class="reward-info flex-1 min-w-[180px] rounded-lg bg-gray-50 p-4">
+            <p class="mb-1 text-2xl font-bold text-primary">
+              {tertiaryReward.rate}
+            </p>
+            <p class="text-xs text-gray-600">{tertiaryReward.description}</p>
+          </div>
+        )
+      }
+    </div>
+
+    <!-- Apply Button -->
+    <div class="flex items-center md:flex-col md:items-end">
+      <CustomButton
+        label="Apply Now"
+        url={applyUrl}
+        variant="fill"
+        class="btn-md"
+        target="_blank"
+        rel="noopener noreferrer"
+      />
+      <p class="mt-2 text-xs text-gray-500">on {bankName}'s secure site</p>
+    </div>
+  </div>
+
+  <!-- Apply now and redeem section -->
+  {
+    offers.length > 0 && (
+      <div class="mb-6">
+        <p class="mb-4 font-semibold text-dark">Apply now and redeem any of these:</p>
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {offers.map((offer) => (
+            <div class="offer-card group relative overflow-hidden rounded-lg border-2 border-gray-200 bg-gradient-to-br from-purple-600 to-pink-600 p-4 text-white transition-all duration-300 hover:shadow-lg">
+              {offer.badge && (
+                <span class="mb-2 inline-block rounded bg-green-500 px-2 py-1 text-xs font-semibold uppercase">
+                  {offer.badge}
+                </span>
+              )}
+              {offer.image && (
+                <div class="mb-3 flex items-center justify-center">
+                  <OptimizedImage
+                    src={offer.image}
+                    alt={offer.title}
+                    width={80}
+                    height={80}
+                    class="h-20 w-20 object-contain"
+                  />
+                </div>
+              )}
+              {offer.icon && (
+                <div class="mb-3 flex items-center justify-center">
+                  <div data-lucide={offer.icon} class="h-16 w-16" />
+                </div>
+              )}
+              <h4 class="mb-1 text-sm font-bold">{offer.title}</h4>
+              {offer.points && (
+                <p class="text-xs opacity-90">
+                  {offer.points}
+                </p>
+              )}
+              {offer.link && (
+                <a href={offer.link} class="absolute inset-0" aria-label={offer.title} />
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    )
+  }
+
+  <!-- Promotion Details -->
+  {
+    promotionDetails && (
+      <div class="rounded-lg bg-green-50 p-4 border-2 border-green-100">
+        <p class="text-sm text-gray-700" set:html={promotionDetails} />
+        {promotionExpiry && (
+          <p class="mt-2 text-xs font-semibold text-gray-600">
+            Valid till {promotionExpiry}
+          </p>
+        )}
+      </div>
+    )
+  }
+
+  <!-- Expandable Sections -->
+  <div class="mt-4 space-y-2">
+    <details class="group">
+      <summary class="flex cursor-pointer items-center justify-between rounded-lg bg-gray-50 px-4 py-3 font-semibold text-dark transition-colors hover:bg-gray-100">
+        <span class="flex items-center gap-2">
+          <div data-lucide="gift" class="h-5 w-5"></div>
+          Reward Details
+        </span>
+        <div data-lucide="chevron-down" class="h-5 w-5 transition-transform group-open:rotate-180"></div>
+      </summary>
+      <div class="mt-2 rounded-lg border-2 border-gray-100 bg-white p-4">
+        <p class="text-sm text-gray-700">
+          Detailed reward information will be displayed here...
+        </p>
+      </div>
+    </details>
+
+    <details class="group">
+      <summary class="flex cursor-pointer items-center justify-between rounded-lg bg-gray-50 px-4 py-3 font-semibold text-dark transition-colors hover:bg-gray-100">
+        <span class="flex items-center gap-2">
+          <div data-lucide="credit-card" class="h-5 w-5"></div>
+          Card Details
+        </span>
+        <div data-lucide="chevron-down" class="h-5 w-5 transition-transform group-open:rotate-180"></div>
+      </summary>
+      <div class="mt-2 rounded-lg border-2 border-gray-100 bg-white p-4">
+        <p class="text-sm text-gray-700">
+          Card specifications and requirements will be displayed here...
+        </p>
+      </div>
+    </details>
+  </div>
+</div>

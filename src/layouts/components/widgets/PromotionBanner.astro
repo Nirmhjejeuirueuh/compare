@@ -1,0 +1,37 @@
+---
+/**
+ * PromotionBanner Component
+ * A banner to highlight special promotions or offers
+ */
+
+interface Props {
+  text: string;
+  endDate?: string;
+  icon?: string;
+  class?: string;
+}
+
+const { text, endDate, icon = "flame", class: className } = Astro.props;
+---
+
+<div
+  class:list={[
+    "promotion-banner flex items-center justify-between rounded-lg bg-green-50 border-2 border-green-200 px-6 py-4",
+    className,
+  ]}
+>
+  <div class="flex items-center gap-3">
+    <div data-lucide={icon} class="h-6 w-6 text-red-500"></div>
+    <p class="text-sm font-medium text-gray-800 md:text-base">
+      {text}
+    </p>
+  </div>
+  {
+    endDate && (
+      <div class="flex items-center gap-2 text-sm font-medium text-red-600">
+        <div data-lucide="clock" class="h-4 w-4" />
+        <span>Promotion ends in {endDate}</span>
+      </div>
+    )
+  }
+</div>

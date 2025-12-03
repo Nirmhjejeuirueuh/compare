@@ -1,0 +1,245 @@
+{
+  "cards": [
+    {
+      "id": "hsbc-revolution",
+      "cardImage": "/images/cards/hsbc-revolution.svg",
+      "cardName": "HSBC Revolution Credit Card",
+      "bankName": "HSBC",
+      "provider": "hsbc",
+      "cardAssociation": ["visa"],
+      "category": "rewards",
+      "promotions": ["moneysmart-exclusive", "miles-rewards"],
+      "badges": ["MONEYSMART EXCLUSIVE", "Earn up to 4 miles per S$1 | Instant Activation*"],
+      "primaryReward": {
+        "rate": "S$1 = 10X Points",
+        "description": "on Online & Contactless Spend on Travel, Shopping & Dining"
+      },
+      "secondaryReward": {
+        "rate": "S$1 = 1X Point",
+        "description": "on All Other Spend"
+      },
+      "tertiaryReward": {
+        "rate": "Earn 4 Miles",
+        "description": "for every 10 Points"
+      },
+      "offers": [
+        {
+          "title": "Apple iPhone 17 Pro (256GB, Cosmic Orange)",
+          "badge": "MoneySmart Exclusive",
+          "image": "/images/offers/iphone-orange.svg",
+          "points": "17865 SmartPoints worth S$1749"
+        },
+        {
+          "title": "S$400 Cash via PayNow",
+          "badge": "MoneySmart Exclusive",
+          "icon": "banknote"
+        },
+        {
+          "title": "Apple 11-inc iPad Air (A16 chip, Silver)",
+          "badge": "FREE with SmartPoints",
+          "image": "/images/offers/ipad-silver.svg",
+          "points": "6140 SmartPoints worth S$499"
+        }
+      ],
+      "promotionDetails": "Get <strong>S$400 Cash</strong> or <strong>6,140 SmartPoints</strong> you apply, spend a min. of S$500 from Card Account Opening Date to end of the following calendar month!<br/><br/>PLUS, score the <strong>LATEST Apple iPhone 17 Pro, 256GB</strong> (worth S$1,759)! Limited units available. <a href=\"#\" class=\"text-primary font-semibold\">T&Cs apply.</a>",
+      "promotionExpiry": "07 Dec 2025",
+      "applyUrl": "https://example.com/apply/hsbc-revolution",
+      "annualFee": 192.6,
+      "rating": 4.8,
+      "featured": true
+    },
+    {
+      "id": "citibank-rewards",
+      "cardImage": "/images/cards/citibank-rewards.svg",
+      "cardName": "Citibank Rewards Card",
+      "bankName": "Citibank",
+      "provider": "citibank",
+      "cardAssociation": ["mastercard"],
+      "category": "rewards",
+      "promotions": ["online-promotion", "vouchers-points"],
+      "badges": ["Online Promotion"],
+      "primaryReward": {
+        "rate": "S$1 = 10X Points",
+        "description": "on all eligible spend"
+      },
+      "secondaryReward": {
+        "rate": "S$1 = 2X Points",
+        "description": "on Weekend Dining"
+      },
+      "offers": [
+        {
+          "title": "S$350 Cash",
+          "badge": "Online Exclusive",
+          "icon": "wallet"
+        },
+        {
+          "title": "Free Annual Fee",
+          "badge": "Limited Time",
+          "icon": "tag"
+        }
+      ],
+      "promotionDetails": "Get <strong>S$350 Cash</strong> when you spend S$800 within 30 days of card approval. <a href=\"#\" class=\"text-primary font-semibold\">T&Cs apply.</a>",
+      "promotionExpiry": "31 Dec 2025",
+      "applyUrl": "https://example.com/apply/citibank-rewards",
+      "annualFee": 0,
+      "rating": 4.5,
+      "featured": false
+    },
+    {
+      "id": "ocbc-365",
+      "cardImage": "/images/cards/ocbc-365.svg",
+      "cardName": "OCBC 365 Credit Card",
+      "bankName": "OCBC",
+      "provider": "ocbc",
+      "cardAssociation": ["visa"],
+      "category": "cashback",
+      "promotions": ["cash-offer"],
+      "badges": ["Cashback Card"],
+      "primaryReward": {
+        "rate": "6% Cashback",
+        "description": "on Dining, Groceries & Petrol"
+      },
+      "secondaryReward": {
+        "rate": "3% Cashback",
+        "description": "on Online Shopping & Transport"
+      },
+      "offers": [
+        {
+          "title": "S$120 Cashback",
+          "badge": "Welcome Bonus",
+          "icon": "badge-dollar-sign"
+        }
+      ],
+      "promotionDetails": "Receive <strong>S$120 cashback</strong> when you spend S$500 within 60 days. <a href=\"#\" class=\"text-primary font-semibold\">T&Cs apply.</a>",
+      "promotionExpiry": "15 Jan 2026",
+      "applyUrl": "https://example.com/apply/ocbc-365",
+      "annualFee": 0,
+      "rating": 4.7,
+      "featured": true
+    },
+    {
+      "id": "dbs-altitude",
+      "cardImage": "/images/cards/hsbc-revolution.svg",
+      "cardName": "DBS Altitude Card",
+      "bankName": "DBS",
+      "provider": "ocbc",
+      "cardAssociation": ["visa"],
+      "category": "travel",
+      "promotions": ["miles-rewards", "apple-gifts"],
+      "badges": ["Best for Miles"],
+      "primaryReward": {
+        "rate": "S$1 = 3 Miles",
+        "description": "on online foreign currency spend"
+      },
+      "secondaryReward": {
+        "rate": "S$1 = 1.2 Miles",
+        "description": "on local spend"
+      },
+      "offers": [
+        {
+          "title": "20,000 Bonus Miles",
+          "badge": "Welcome Gift",
+          "icon": "plane"
+        }
+      ],
+      "promotionDetails": "Get <strong>20,000 bonus miles</strong> when you spend S$5,000 within 3 months. <a href=\"#\" class=\"text-primary font-semibold\">T&Cs apply.</a>",
+      "promotionExpiry": "28 Feb 2026",
+      "applyUrl": "https://example.com/apply/dbs-altitude",
+      "annualFee": 196,
+      "rating": 4.6,
+      "featured": false
+    },
+    {
+      "id": "uob-one",
+      "cardImage": "/images/cards/citibank-rewards.svg",
+      "cardName": "UOB One Card",
+      "bankName": "UOB",
+      "provider": "citibank",
+      "cardAssociation": ["mastercard", "visa"],
+      "category": "cashback",
+      "promotions": ["online-promotion", "cash-offer"],
+      "badges": ["Popular Choice"],
+      "primaryReward": {
+        "rate": "5% Cashback",
+        "description": "on eligible categories"
+      },
+      "secondaryReward": {
+        "rate": "0.5% Cashback",
+        "description": "on other spending"
+      },
+      "offers": [
+        {
+          "title": "S$100 Cash Rebate",
+          "badge": "New Cardmember",
+          "icon": "gift"
+        }
+      ],
+      "promotionDetails": "Enjoy <strong>S$100 cash rebate</strong> when you charge S$500 to your new card. <a href=\"#\" class=\"text-primary font-semibold\">T&Cs apply.</a>",
+      "promotionExpiry": "31 Mar 2026",
+      "applyUrl": "https://example.com/apply/uob-one",
+      "annualFee": 0,
+      "rating": 4.4,
+      "featured": false
+    },
+    {
+      "id": "amex-platinum",
+      "cardImage": "/images/cards/ocbc-365.svg",
+      "cardName": "American Express Platinum Card",
+      "bankName": "American Express",
+      "provider": "hsbc",
+      "cardAssociation": ["amex"],
+      "category": "travel",
+      "promotions": ["moneysmart-exclusive", "vouchers-points"],
+      "badges": ["PREMIUM CARD"],
+      "primaryReward": {
+        "rate": "S$1 = 2 Miles",
+        "description": "on all spend"
+      },
+      "secondaryReward": {
+        "rate": "Free Airport Lounge",
+        "description": "Unlimited access worldwide"
+      },
+      "offers": [
+        {
+          "title": "50,000 Welcome Points",
+          "badge": "Exclusive Offer",
+          "icon": "sparkles"
+        }
+      ],
+      "promotionDetails": "Earn <strong>50,000 Membership Rewards points</strong> after spending S$6,000 in first 3 months. <a href=\"#\" class=\"text-primary font-semibold\">T&Cs apply.</a>",
+      "promotionExpiry": "30 Apr 2026",
+      "applyUrl": "https://example.com/apply/amex-platinum",
+      "annualFee": 642,
+      "rating": 4.9,
+      "featured": true
+    },
+    {
+      "id": "standard-chartered-unlimited",
+      "cardImage": "/images/cards/hsbc-revolution.svg",
+      "cardName": "Standard Chartered Unlimited Cashback Card",
+      "bankName": "Standard Chartered",
+      "provider": "citibank",
+      "cardAssociation": ["visa"],
+      "category": "cashback",
+      "promotions": ["online-promotion", "cash-offer"],
+      "badges": ["Best Cashback"],
+      "primaryReward": {
+        "rate": "1.5% Cashback",
+        "description": "on all spending with no cap"
+      },
+      "offers": [
+        {
+          "title": "S$200 Cash Credit",
+          "badge": "Sign Up Bonus",
+          "icon": "banknote"
+        }
+      ],
+      "promotionDetails": "Receive <strong>S$200 cash credit</strong> when you spend S$1,000 within 30 days. <a href=\"#\" class=\"text-primary font-semibold\">T&Cs apply.</a>",
+      "promotionExpiry": "31 May 2026",
+      "applyUrl": "https://example.com/apply/sc-unlimited",
+      "annualFee": 0,
+      "rating": 4.5,
+      "featured": false
+    }
+  ]
+}

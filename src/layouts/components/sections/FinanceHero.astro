@@ -1,0 +1,156 @@
+---
+/**
+ * FinanceHero Component
+ * Hero section for financial services comparison platform
+ * Features gradient background, category cards, and call-to-action
+ */
+
+import CategoryCard from "@/components/cards/CategoryCard.astro";
+import CustomButton from "@/components/CustomButton.astro";
+
+interface CategoryItem {
+  icon: string;
+  title: string;
+  url?: string;
+}
+
+interface Props {
+  tagline?: string;
+  title?: string;
+  categories?: CategoryItem[];
+  ctaHeading?: string;
+  ctaDescription?: string;
+  buttons?: Array<{
+    label: string;
+    url: string;
+    variant?: "fill" | "outline" | "text";
+  }>;
+}
+
+const {
+  tagline = "Singapore's No. 1 personal finance platform",
+  title = "Save, Protect and Grow Your Money",
+  categories = [
+    { icon: "credit-card", title: "Credit Cards", url: "#" },
+    { icon: "plane", title: "Travel Insurance", url: "#" },
+    { icon: "file-text", title: "Personal Loans", url: "#" },
+    { icon: "piggy-bank", title: "Savings Accounts", url: "#" },
+    { icon: "trending-up", title: "Investments", url: "#" },
+    { icon: "car", title: "Car Insurance", url: "#" },
+    { icon: "landmark", title: "Priority Banking", url: "#" },
+    { icon: "user-check", title: "Maid Insurance", url: "#" },
+    { icon: "home", title: "Home Insurance", url: "#" },
+  ],
+  ctaHeading = "The right credit card is right here, look no further",
+  ctaDescription = "We have done the job for you and selected the best cards available in Singapore.",
+  buttons = [
+    { label: "Compare Credit Cards", url: "#", variant: "fill" },
+    { label: "Explore Guides & Tips", url: "#", variant: "outline" },
+  ],
+} = Astro.props;
+---
+
+<section class="finance-hero relative overflow-hidden py-16 md:py-20 lg:py-24">
+  <!-- Gradient Background -->
+  <div class="absolute inset-0 -z-10 bg-gradient-to-br from-teal-600 via-cyan-600 to-purple-700">
+    <!-- Additional gradient overlay for depth -->
+    <div class="absolute inset-0 bg-gradient-to-r from-teal-600/50 to-purple-700/50"></div>
+  </div>
+
+  <div class="container">
+    <!-- Hero Content -->
+    <div class="mx-auto max-w-6xl space-y-10 md:space-y-12">
+      <!-- Tagline and Title -->
+      <div class="space-y-4 text-center text-white">
+        {tagline && (
+          <p class="text-sm font-medium uppercase tracking-wide opacity-90 md:text-base">
+            {tagline}
+          </p>
+        )}
+        {title && (
+          <h1 class="text-4xl font-bold leading-tight md:text-5xl lg:text-6xl">
+            {title}
+          </h1>
+        )}
+      </div>
+
+      <!-- Category Cards Grid -->
+      <div
+        class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:gap-5"
+        data-aos="fade-up"
+        data-aos-delay="200"
+      >
+        {categories.map((category) => (
+          <CategoryCard
+            icon={category.icon}
+            title={category.title}
+            url={category.url}
+          />
+        ))}
+      </div>
+
+      <!-- CTA Section -->
+      <div
+        class="mx-auto max-w-2xl space-y-6 text-center"
+        data-aos="fade-up"
+        data-aos-delay="400"
+      >
+        {ctaHeading && (
+          <h2 class="text-2xl font-bold text-white md:text-3xl lg:text-4xl">
+            {ctaHeading}
+          </h2>
+        )}
+        {ctaDescription && (
+          <p class="text-base text-white/90 md:text-lg">
+            {ctaDescription}
+          </p>
+        )}
+
+        <!-- Action Buttons -->
+        <div class="flex flex-col items-center justify-center gap-4 pt-4 sm:flex-row">
+          {buttons.map((button) => (
+            <CustomButton
+              label={button.label}
+              url={button.url}
+              variant={button.variant as "fill" | "outline" | "text"}
+              class:list={[
+                "btn-md w-full sm:w-auto",
+                button.variant === "outline" && "finance-hero-outline-btn"
+              ]}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .finance-hero {
+    min-height: 600px;
+  }
+
+  @media (min-width: 768px) {
+    .finance-hero {
+      min-height: 700px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .finance-hero {
+      min-height: 750px;
+    }
+  }
+
+  /* Custom outline button style for gradient background */
+  :global(.finance-hero-outline-btn) {
+    background-color: transparent !important;
+    border: 2px solid white !important;
+    color: white !important;
+  }
+
+  :global(.finance-hero-outline-btn:hover) {
+    background-color: white !important;
+    color: var(--color-primary) !important;
+  }
+</style>

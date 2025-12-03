@@ -1,0 +1,57 @@
+---
+/**
+ * FilterButton Component
+ * A button component for filter categories with optional dropdown
+ */
+
+interface Props {
+  label: string;
+  active?: boolean;
+  hasDropdown?: boolean;
+  category?: string;
+  onClick?: string;
+  class?: string;
+}
+
+const {
+  label,
+  active = false,
+  hasDropdown = false,
+  category,
+  onClick,
+  class: className,
+} = Astro.props;
+---
+
+<button
+  type="button"
+  data-category={category}
+  class:list={[
+    "category-filter-btn inline-flex items-center gap-2 rounded-full border-2 px-6 py-2.5 text-sm font-medium transition-all duration-300 whitespace-nowrap",
+    active
+      ? "border-white bg-white text-dark active"
+      : "border-white/40 bg-transparent text-white hover:border-white hover:bg-white/10",
+    className,
+  ]}
+  onclick={onClick}
+>
+  {label}
+  {
+    hasDropdown && (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="transition-transform duration-300"
+      >
+        <path d="m6 9 6 6 6-6" />
+      </svg>
+    )
+  }
+</button>

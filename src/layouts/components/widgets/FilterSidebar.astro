@@ -1,0 +1,109 @@
+---
+/**
+ * FilterSidebar Component
+ * Sidebar component for filtering credit cards with various filter options
+ */
+
+interface FilterOption {
+  id: string;
+  label: string;
+  badge?: string;
+}
+
+interface FilterSection {
+  title: string;
+  type: "checkbox" | "radio";
+  options: FilterOption[];
+}
+
+interface Props {
+  sections?: FilterSection[];
+}
+
+const {
+  sections = [
+    {
+      title: "Promotions",
+      type: "checkbox",
+      options: [
+        { id: "moneysmart-exclusive", label: "MoneySmart Exclusive" },
+        { id: "online-promotion", label: "Online Promotion" },
+        { id: "apple-gifts", label: "Apple Gifts" },
+        { id: "vouchers-points", label: "Vouchers & Points" },
+        { id: "miles-rewards", label: "Miles & Travel Rewards" },
+        { id: "cash-offer", label: "Richest Cash Offer" },
+      ],
+    },
+    {
+      title: "Card Association",
+      type: "checkbox",
+      options: [
+        { id: "mastercard", label: "Mastercard" },
+        { id: "visa", label: "Visa" },
+        { id: "amex", label: "American Express" },
+        { id: "unionpay", label: "UnionPay" },
+        { id: "diners", label: "Diners Club International" },
+      ],
+    },
+    {
+      title: "Providers",
+      type: "radio",
+      options: [
+        { id: "all-providers", label: "All Providers" },
+        { id: "hsbc", label: "HSBC", badge: "POPULAR" },
+        { id: "citibank", label: "Citibank" },
+        { id: "ocbc", label: "OCBC" },
+        { id: "airwallex", label: "Airwallex" },
+      ],
+    },
+  ],
+} = Astro.props;
+---
+
+<aside class="filter-sidebar space-y-8">
+  <h2 class="text-xl font-bold text-dark">Refine Your Results</h2>
+
+  {
+    sections.map((section) => (
+      <div class="filter-section space-y-4">
+        <h3 class="text-base font-semibold text-dark">{section.title}</h3>
+        <div class="space-y-3">
+          {section.options.map((option) => (
+            <label class="flex cursor-pointer items-center gap-3 group">
+              <input
+                type={section.type}
+                name={section.type === "radio" ? section.title.toLowerCase().replace(/\s+/g, "-") : option.id}
+                id={option.id}
+                value={option.id}
+                checked={option.id === "all-providers"}
+                data-filter-type={section.title.toLowerCase().replace(/\s+/g, "-")}
+                data-filter-value={option.id}
+                class:list={[
+                  "filter-input h-5 w-5 border-2 transition-all duration-200",
+                  section.type === "checkbox"
+                    ? "rounded border-gray-300 text-primary focus:ring-primary focus:ring-offset-0"
+                    : "border-gray-300 text-primary focus:ring-primary focus:ring-offset-0",
+                ]}
+              />
+              <span class="flex items-center gap-2 text-sm text-gray-700 group-hover:text-dark transition-colors">
+                {option.label}
+                {option.badge && (
+                  <span class="inline-block rounded bg-green-500 px-2 py-0.5 text-xs font-semibold text-white uppercase">
+                    {option.badge}
+                  </span>
+                )}
+              </span>
+            </label>
+          ))}
+        </div>
+      </div>
+    ))
+  }
+</aside>
+
+<style>
+  .filter-sidebar {
+    position: sticky;
+    top: 2rem;
+  }
+</style>

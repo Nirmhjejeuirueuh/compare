@@ -1,0 +1,43 @@
+---
+/**
+ * CategoryCard Component
+ * A card component for displaying financial service categories
+ *
+ * Example Usage:
+ * <CategoryCard
+ *   icon="credit-card"
+ *   title="Credit Cards"
+ *   url="/credit-cards"
+ * />
+ */
+
+interface Props {
+  icon: string;
+  title: string;
+  url?: string;
+  class?: string;
+}
+
+const { icon, title, url = "#", class: className } = Astro.props;
+---
+
+<div
+  class:list={[
+    "category-card group relative overflow-hidden rounded-2xl bg-white/90 backdrop-blur-sm p-6 transition-all duration-300 hover:bg-white hover:shadow-xl hover:-translate-y-1",
+    className
+  ]}
+>
+  {url && url !== "#" && (
+    <a href={url} class="absolute inset-0 z-10" aria-label={title} />
+  )}
+
+  <div class="flex flex-col items-center text-center space-y-3">
+    <div class="icon-wrapper flex h-14 w-14 items-center justify-center rounded-xl bg-gray-100 text-gray-700 transition-all duration-300 group-hover:bg-primary group-hover:text-white">
+      <div data-lucide={icon} class="h-7 w-7"></div>
+    </div>
+
+    <h3 class="text-base font-semibold text-dark leading-tight">
+      {title}
+    </h3>
+  </div>
+</div>
