@@ -1,0 +1,326 @@
+{
+  "investments": [
+    {
+      "id": "webull-singapore",
+      "providerLogo": "/images/investments/webull-logo.png",
+      "providerName": "Webull Singapore",
+      "badges": ["MONEYSMART EXCLUSIVE", "Earn up to 3.5% SGD interest bonus"],
+      "fees": [
+        {
+          "amount": "US$0.9*",
+          "description": "Flat Commission Fee for US Stocks"
+        },
+        {
+          "amount": "S$0*",
+          "description": "Min. Commission Fee for SG Stocks",
+          "note": "1"
+        },
+        {
+          "amount": "US$0*",
+          "description": "Platform Fee"
+        }
+      ],
+      "rewards": [
+        {
+          "icon": "dollar-sign",
+          "title": "Up to $250 Cash",
+          "value": "via PayNow",
+          "points": "FREE with SmartPoints"
+        },
+        {
+          "image": "/images/rewards/airpods-pro.png",
+          "title": "Apple AirPods Pro 3",
+          "value": "worth S$349",
+          "points": "3900 SmartPoints"
+        },
+        {
+          "image": "/images/rewards/luggage.png",
+          "title": "LOJEL Voja Large Luggage",
+          "value": "worth S$350",
+          "points": "3,650 SmartPoints"
+        }
+      ],
+      "promotions": [
+        {
+          "type": "exclusive",
+          "title": "MoneySmart Exclusive",
+          "description": "Get up to <strong>S$250 UPSIZED Cash</strong> via PayNow OR <strong>Apple Airpods Pro 3</strong> (worth S$349) OR <strong>LOJEL Voja Large Luggage</strong> (worth S$350) OR <strong>Apple Watch SE</strong> (worth S$349) when you meet the requirements. <a href='#' class='text-green-700 underline'>T&Cs apply</a>."
+        },
+        {
+          "type": "welcome",
+          "title": "Webull Welcome Promotion",
+          "description": "",
+          "details": [
+            "Enjoy <strong>0* Platform Fees</strong> on US stocks and US options.",
+            "Enjoy <strong>fixed US stocks and ETFs Commission Fee</strong> for US Stocks & ETFs at <strong>USD0.90 per order</strong>.",
+            "Plus, get up to <strong>SGD280* AAPL shares and up to 3.5% P.A. interest bonus*</strong> <a href='#' class='text-cyan-700 underline'>T&Cs apply</a>."
+          ],
+          "validUntil": "Valid until 14 Dec 2025 - See more details below"
+        }
+      ],
+      "applyUrl": "https://example.com/apply/webull",
+      "featured": true,
+      "promotionTypes": ["apple", "cash"],
+      "signUpFeatures": ["myinfo", "no-min", "paynow"],
+      "provider": "all",
+      "category": "all"
+    },
+    {
+      "id": "dbs-vickers",
+      "providerLogo": "/images/investments/dbs-logo.png",
+      "providerName": "DBS Vickers",
+      "badges": ["Popular Choice"],
+      "fees": [
+        {
+          "amount": "0.08%",
+          "description": "SG Stocks Commission",
+          "note": "1"
+        },
+        {
+          "amount": "0.12%",
+          "description": "US Stocks Commission"
+        },
+        {
+          "amount": "S$0*",
+          "description": "Platform Fee"
+        }
+      ],
+      "rewards": [
+        {
+          "icon": "gift",
+          "title": "Welcome Bonus",
+          "value": "Up to S$100",
+          "points": "FREE with SmartPoints"
+        }
+      ],
+      "promotions": [
+        {
+          "type": "welcome",
+          "title": "DBS Vickers Welcome Promotion",
+          "description": "Open a new DBS Vickers account and enjoy <strong>commission-free trades</strong> for the first 3 months.",
+          "validUntil": "Valid until 31 Dec 2025"
+        }
+      ],
+      "applyUrl": "https://example.com/apply/dbs-vickers",
+      "featured": false,
+      "promotionTypes": ["cash"],
+      "signUpFeatures": ["cpf", "srs"],
+      "provider": "dbs",
+      "category": "all"
+    },
+    {
+      "id": "moomoo",
+      "providerLogo": "/images/investments/moomoo-logo.png",
+      "providerName": "moomoo Singapore",
+      "badges": ["MONEYSMART EXCLUSIVE"],
+      "fees": [
+        {
+          "amount": "US$0.99",
+          "description": "US Stocks Commission"
+        },
+        {
+          "amount": "0.03%",
+          "description": "SG Stocks Commission",
+          "note": "1"
+        },
+        {
+          "amount": "S$0*",
+          "description": "Platform Fee"
+        }
+      ],
+      "rewards": [
+        {
+          "icon": "smartphone",
+          "title": "iPhone 15 Pro",
+          "value": "worth S$1,299",
+          "points": "12,000 SmartPoints"
+        },
+        {
+          "icon": "dollar-sign",
+          "title": "Cash Rewards",
+          "value": "Up to S$200"
+        }
+      ],
+      "promotions": [
+        {
+          "type": "exclusive",
+          "title": "MoneySmart Exclusive",
+          "description": "Get <strong>iPhone 15 Pro</strong> or <strong>up to S$200 cash</strong> when you sign up and meet the requirements."
+        }
+      ],
+      "applyUrl": "https://example.com/apply/moomoo",
+      "featured": true,
+      "promotionTypes": ["apple", "cash"],
+      "signUpFeatures": ["myinfo", "paynow"],
+      "provider": "all",
+      "category": "all"
+    },
+    {
+      "id": "tiger-brokers",
+      "providerLogo": "/images/investments/tiger-logo.png",
+      "providerName": "Tiger Brokers",
+      "badges": [],
+      "fees": [
+        {
+          "amount": "US$0.99",
+          "description": "US Stocks Commission"
+        },
+        {
+          "amount": "0.08%",
+          "description": "SG Stocks Commission"
+        },
+        {
+          "amount": "S$0",
+          "description": "Platform Fee"
+        }
+      ],
+      "rewards": [],
+      "promotions": [
+        {
+          "type": "welcome",
+          "title": "Tiger Brokers Welcome Bonus",
+          "description": "Get <strong>free stocks worth up to US$500</strong> when you open and fund your account.",
+          "validUntil": "Valid until 31 Jan 2026"
+        }
+      ],
+      "applyUrl": "https://example.com/apply/tiger",
+      "featured": false,
+      "promotionTypes": ["cash"],
+      "signUpFeatures": ["no-min"],
+      "provider": "all",
+      "category": "all"
+    },
+    {
+      "id": "interactive-brokers",
+      "providerLogo": "/images/investments/ibkr-logo.png",
+      "providerName": "Interactive Brokers",
+      "badges": [],
+      "fees": [
+        {
+          "amount": "US$0.35",
+          "description": "US Stocks Commission per share"
+        },
+        {
+          "amount": "0.08%",
+          "description": "SG Stocks Commission"
+        },
+        {
+          "amount": "US$10",
+          "description": "Monthly Platform Fee"
+        }
+      ],
+      "rewards": [],
+      "promotions": [],
+      "applyUrl": "https://example.com/apply/ibkr",
+      "featured": false,
+      "promotionTypes": [],
+      "signUpFeatures": [],
+      "provider": "all",
+      "category": "all"
+    },
+    {
+      "id": "endowus",
+      "providerLogo": "/images/investments/endowus-logo.png",
+      "providerName": "Endowus",
+      "badges": ["Robo Advisory"],
+      "fees": [
+        {
+          "amount": "0.40%",
+          "description": "Annual Advisory Fee"
+        },
+        {
+          "amount": "S$0",
+          "description": "Platform Fee"
+        },
+        {
+          "amount": "S$0",
+          "description": "Transaction Fee"
+        }
+      ],
+      "rewards": [
+        {
+          "icon": "gift",
+          "title": "Welcome Bonus",
+          "value": "S$20 Cash"
+        }
+      ],
+      "promotions": [
+        {
+          "type": "welcome",
+          "title": "Endowus Welcome Promotion",
+          "description": "Get <strong>S$20 cash</strong> when you make your first investment of S$1,000 or more.",
+          "validUntil": "Valid until 31 Mar 2026"
+        }
+      ],
+      "applyUrl": "https://example.com/apply/endowus",
+      "featured": false,
+      "promotionTypes": ["cash"],
+      "signUpFeatures": ["cpf", "srs", "no-min"],
+      "provider": "endowus",
+      "category": "robo-advisory"
+    },
+    {
+      "id": "cmc-markets",
+      "providerLogo": "/images/investments/cmc-logo.png",
+      "providerName": "CMC Markets",
+      "badges": ["CFD Trading"],
+      "fees": [
+        {
+          "amount": "0.08%",
+          "description": "CFD Commission"
+        },
+        {
+          "amount": "Variable",
+          "description": "Spread from 0.7 pips"
+        },
+        {
+          "amount": "S$0",
+          "description": "Platform Fee"
+        }
+      ],
+      "rewards": [],
+      "promotions": [
+        {
+          "type": "welcome",
+          "title": "CMC Markets Promotion",
+          "description": "Get up to <strong>S$500 cashback</strong> when you open and fund your CFD account.",
+          "validUntil": "Valid until 28 Feb 2026"
+        }
+      ],
+      "applyUrl": "https://example.com/apply/cmc",
+      "featured": false,
+      "promotionTypes": ["cash", "cfd"],
+      "signUpFeatures": [],
+      "provider": "cmc",
+      "category": "cfd"
+    },
+    {
+      "id": "saxo-markets",
+      "providerLogo": "/images/investments/saxo-logo.png",
+      "providerName": "Saxo Markets",
+      "badges": [],
+      "fees": [
+        {
+          "amount": "US$1",
+          "description": "US Stocks Commission min"
+        },
+        {
+          "amount": "0.08%",
+          "description": "SG Stocks Commission"
+        },
+        {
+          "amount": "S$0",
+          "description": "Platform Fee"
+        }
+      ],
+      "rewards": [],
+      "promotions": [],
+      "applyUrl": "https://example.com/apply/saxo",
+      "featured": false,
+      "promotionTypes": [],
+      "signUpFeatures": [],
+      "provider": "all",
+      "category": "all"
+    }
+  ]
+}

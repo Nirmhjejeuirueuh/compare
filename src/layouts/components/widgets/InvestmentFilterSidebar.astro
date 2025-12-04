@@ -1,0 +1,146 @@
+---
+/**
+ * InvestmentFilterSidebar Component
+ * Sidebar with filters for investment comparison
+ */
+
+interface FilterOption {
+  id: string;
+  label: string;
+  value: string;
+}
+
+interface Props {
+  promotions?: FilterOption[];
+  signUpFeatures?: FilterOption[];
+  providers?: FilterOption[];
+}
+
+const {
+  promotions = [
+    { id: "apple-gadgets", label: "Apple Gadgets", value: "apple" },
+    { id: "cash", label: "Cash", value: "cash" },
+    { id: "other-electronics", label: "Other Electronics", value: "electronics" },
+    { id: "cfd-promotions", label: "CFD Promotions", value: "cfd" },
+  ],
+  signUpFeatures = [
+    { id: "apply-myinfo", label: "Apply via MyInfo", value: "myinfo" },
+    { id: "no-min-funding", label: "No Min. Funding", value: "no-min" },
+    { id: "transfer-paynow", label: "Transfer via PayNow", value: "paynow" },
+    { id: "invest-cpf", label: "Invest with CPF", value: "cpf" },
+    { id: "invest-srs", label: "Invest with SRS", value: "srs" },
+  ],
+  providers = [
+    { id: "all-providers", label: "All Providers", value: "all" },
+    { id: "cmc-markets", label: "CMC Markets", value: "cmc" },
+    { id: "dbs", label: "DBS", value: "dbs" },
+    { id: "endowus", label: "Endowus", value: "endowus" },
+  ],
+} = Astro.props;
+---
+
+<aside class="investment-filter-sidebar sticky top-24 rounded-lg bg-white border-2 border-gray-200 p-6">
+  <h2 class="mb-6 text-xl font-bold text-gray-900">Refine Your Results</h2>
+
+  <!-- Promotions Filter -->
+  <div class="mb-8">
+    <h3 class="mb-4 text-base font-semibold text-gray-900">Promotions</h3>
+    <div class="space-y-3">
+      {
+        promotions.map((promo) => (
+          <label class="flex cursor-pointer items-center gap-3 group">
+            <input
+              type="checkbox"
+              name="promotions"
+              value={promo.value}
+              data-filter-type="promotions"
+              data-filter-value={promo.value}
+              class="filter-input h-5 w-5 rounded border-gray-300 text-primary focus:ring-2 focus:ring-primary"
+            />
+            <span class="text-sm text-gray-700 group-hover:text-gray-900">{promo.label}</span>
+          </label>
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- Sign Up Features Filter -->
+  <div class="mb-8">
+    <h3 class="mb-4 text-base font-semibold text-gray-900">Sign Up Features</h3>
+    <div class="space-y-3">
+      {
+        signUpFeatures.map((feature) => (
+          <label class="flex cursor-pointer items-center gap-3 group">
+            <input
+              type="checkbox"
+              name="features"
+              value={feature.value}
+              data-filter-type="features"
+              data-filter-value={feature.value}
+              class="filter-input h-5 w-5 rounded border-gray-300 text-primary focus:ring-2 focus:ring-primary"
+            />
+            <span class="text-sm text-gray-700 group-hover:text-gray-900">{feature.label}</span>
+          </label>
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- Providers Filter -->
+  <div>
+    <h3 class="mb-4 text-base font-semibold text-gray-900">Providers</h3>
+    <div class="space-y-3">
+      {
+        providers.map((provider, index) => (
+          <label class="flex cursor-pointer items-center gap-3 group">
+            <input
+              type="radio"
+              name="provider"
+              value={provider.value}
+              checked={index === 0}
+              data-filter-type="provider"
+              data-filter-value={provider.value}
+              class="filter-input h-5 w-5 border-gray-300 text-primary focus:ring-2 focus:ring-primary"
+            />
+            <span class="text-sm text-gray-700 group-hover:text-gray-900">{provider.label}</span>
+          </label>
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- Clear Filters Button -->
+  <button
+    type="button"
+    id="clear-filters"
+    class="mt-6 w-full rounded-lg border-2 border-gray-300 bg-white px-4 py-2 text-sm font-semibold text-gray-700 transition-colors hover:bg-gray-50"
+  >
+    Clear All Filters
+  </button>
+</aside>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const clearButton = document.getElementById("clear-filters");
+
+    if (clearButton) {
+      clearButton.addEventListener("click", () => {
+        // Uncheck all checkboxes
+        const checkboxes = document.querySelectorAll('input[type="checkbox"].filter-input');
+        checkboxes.forEach((checkbox) => {
+          (checkbox as HTMLInputElement).checked = false;
+        });
+
+        // Reset to "All Providers" radio
+        const allProvidersRadio = document.querySelector('input[value="all"]') as HTMLInputElement;
+        if (allProvidersRadio) {
+          allProvidersRadio.checked = true;
+        }
+
+        // Trigger change event to update results
+        const event = new Event("change", { bubbles: true });
+        checkboxes[0]?.dispatchEvent(event);
+      });
+    }
+  });
+</script>

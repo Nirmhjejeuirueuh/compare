@@ -1,0 +1,126 @@
+---
+/**
+ * InvestmentHero Component
+ * Hero section for investment comparison page with breadcrumb, title, and category filters
+ */
+
+import FilterButton from "@/components/widgets/FilterButton.astro";
+
+interface CategoryFilter {
+  label: string;
+  active?: boolean;
+  category?: string;
+}
+
+interface Props {
+  breadcrumb?: Array<{ label: string; url?: string }>;
+  title?: string;
+  description?: string;
+  categories?: CategoryFilter[];
+}
+
+const {
+  breadcrumb = [
+    { label: "Home", url: "/" },
+    { label: "Investments" },
+  ],
+  title = "Compare the Best Investment & Online Brokerages in Singapore",
+  description = "Choose from MoneySmart's curated list of best brokerage accounts in Singapore and learn how to maximise returns by investing. With rising inflation, protect your wealth by investing in assets that outpace the rate of inflation.",
+  categories = [
+    { label: "Investments", active: true, category: "all" },
+    { label: "Robo Advisory", category: "robo-advisory" },
+    { label: "Singapore Stocks", category: "sg-stocks" },
+    { label: "US Stocks", category: "us-stocks" },
+    { label: "ETFs", category: "etfs" },
+    { label: "REITs", category: "reits" },
+    { label: "Forex", category: "forex" },
+    { label: "CFD", category: "cfd" },
+  ],
+} = Astro.props;
+---
+
+<section class="investment-hero relative overflow-hidden bg-gradient-to-br from-slate-800 via-slate-900 to-slate-800 py-12 md:py-16">
+  <div class="container">
+    <!-- Breadcrumb -->
+    <nav class="mb-6" aria-label="Breadcrumb">
+      <ol class="flex items-center gap-2 text-sm">
+        {
+          breadcrumb.map((item, index) => (
+            <li class="flex items-center gap-2">
+              {index > 0 && (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="text-white/50"
+                >
+                  <path d="m9 18 6-6-6-6" />
+                </svg>
+              )}
+              {item.url ? (
+                <a
+                  href={item.url}
+                  class="text-white/70 hover:text-white transition-colors"
+                >
+                  {item.label}
+                </a>
+              ) : (
+                <span class="text-white font-medium">{item.label}</span>
+              )}
+            </li>
+          ))
+        }
+      </ol>
+    </nav>
+
+    <!-- Title and Description -->
+    <div class="mb-8 max-w-5xl">
+      <h1 class="mb-4 text-3xl font-bold leading-tight text-white md:text-4xl lg:text-5xl">
+        {title}
+      </h1>
+      <div class="flex items-start gap-3">
+        <p class="text-base leading-relaxed text-white/85 md:text-lg">
+          {description}
+        </p>
+        <button
+          type="button"
+          class="flex-shrink-0 rounded-full p-1 text-white/70 transition-all duration-200 hover:bg-white/10 hover:text-white"
+          aria-label="Read more"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="m6 9 6 6 6-6"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Category Filter Buttons -->
+    <div class="flex flex-wrap gap-3">
+      {
+        categories.map((filter) => (
+          <FilterButton
+            label={filter.label}
+            active={filter.active}
+            category={filter.category}
+          />
+        ))
+      }
+    </div>
+  </div>
+</section>
