@@ -1,0 +1,118 @@
+---
+/**
+ * LoanFilterSidebar Component
+ * Sidebar with filters for personal loan comparison
+ */
+
+interface FilterOption {
+  id: string;
+  label: string;
+  value: string;
+}
+
+interface Props {
+  loanFeatures?: FilterOption[];
+  banks?: FilterOption[];
+}
+
+const {
+  loanFeatures = [
+    { id: "instant-approval", label: "Instant Approval", value: "instant" },
+    { id: "processing-fee-waiver", label: "Processing Fee Waiver", value: "fee-waiver" },
+    { id: "zero-interest", label: "0% Interest Rate", value: "zero-interest" },
+    { id: "alternate-lenders", label: "Alternate Lenders", value: "alternate" },
+  ],
+  banks = [
+    { id: "all-banks", label: "All Banks", value: "all" },
+    { id: "best-licensed", label: "Best Licensed Moneylender", value: "licensed" },
+    { id: "cash-direct", label: "Cash Direct", value: "cash-direct" },
+    { id: "cimb", label: "CIMB", value: "cimb" },
+    { id: "citibank", label: "Citibank", value: "citibank" },
+    { id: "credible-sg", label: "Credible SG", value: "credible" },
+  ],
+} = Astro.props;
+---
+
+<aside class="loan-filter-sidebar sticky top-24 rounded-lg bg-white border-2 border-gray-200 p-6">
+  <h2 class="mb-6 text-xl font-bold text-gray-900">Refine Your Results</h2>
+
+  <!-- Loan Features Filter -->
+  <div class="mb-8">
+    <h3 class="mb-4 text-base font-semibold text-gray-900">Loan Features</h3>
+    <div class="space-y-3">
+      {
+        loanFeatures.map((feature) => (
+          <label class="flex cursor-pointer items-center gap-3 group">
+            <input
+              type="checkbox"
+              name="loan-features"
+              value={feature.value}
+              data-filter-type="features"
+              data-filter-value={feature.value}
+              class="filter-input h-5 w-5 rounded border-gray-300 text-primary focus:ring-2 focus:ring-primary"
+            />
+            <span class="text-sm text-gray-700 group-hover:text-gray-900">{feature.label}</span>
+          </label>
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- Bank Filter -->
+  <div>
+    <h3 class="mb-4 text-base font-semibold text-gray-900">Bank</h3>
+    <div class="space-y-3">
+      {
+        banks.map((bank, index) => (
+          <label class="flex cursor-pointer items-center gap-3 group">
+            <input
+              type="radio"
+              name="bank"
+              value={bank.value}
+              checked={index === 0}
+              data-filter-type="bank"
+              data-filter-value={bank.value}
+              class="filter-input h-5 w-5 border-gray-300 text-primary focus:ring-2 focus:ring-primary"
+            />
+            <span class="text-sm text-gray-700 group-hover:text-gray-900">{bank.label}</span>
+          </label>
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- Clear Filters Button -->
+  <button
+    type="button"
+    id="clear-filters"
+    class="mt-6 w-full rounded-lg border-2 border-gray-300 bg-white px-4 py-2 text-sm font-semibold text-gray-700 transition-colors hover:bg-gray-50"
+  >
+    Clear All Filters
+  </button>
+</aside>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const clearButton = document.getElementById("clear-filters");
+
+    if (clearButton) {
+      clearButton.addEventListener("click", () => {
+        // Uncheck all checkboxes
+        const checkboxes = document.querySelectorAll('input[type="checkbox"].filter-input');
+        checkboxes.forEach((checkbox) => {
+          (checkbox as HTMLInputElement).checked = false;
+        });
+
+        // Reset to "All Banks" radio
+        const allBanksRadio = document.querySelector('input[value="all"]') as HTMLInputElement;
+        if (allBanksRadio) {
+          allBanksRadio.checked = true;
+        }
+
+        // Trigger change event to update results
+        const event = new Event("change", { bubbles: true });
+        checkboxes[0]?.dispatchEvent(event);
+      });
+    }
+  });
+</script>

@@ -1,0 +1,367 @@
+---
+/**
+ * Personal Loan Comparison Page
+ * Compare and find the best personal loans in Singapore
+ */
+
+import Base from "@/layouts/Base.astro";
+import { generatePaths } from "@/lib/utils/i18nUtils";
+import PersonalLoanHero from "@/components/sections/PersonalLoanHero.astro";
+import LoanFilterSidebar from "@/components/widgets/LoanFilterSidebar.astro";
+import PersonalLoanItem from "@/components/cards/PersonalLoanItem.astro";
+import SortDropdown from "@/components/widgets/SortDropdown.astro";
+
+// Import personal loan data
+import personalLoansData from "@/data/personal-loans.json";
+
+export function getStaticPaths() {
+  return generatePaths();
+}
+
+// Page metadata
+const pageData = {
+  title: "Personal Loan Comparison - Find the Best Loans 2025",
+  meta_title: "Compare the Best Personal Loans in Singapore 2025",
+  description:
+    "Compare and find your ideal personal loan with our easy-to-use comparison tool. Discover the best rates, lowest fees, and fastest approval in Singapore.",
+  image: "/images/personal-loans-og.jpg",
+};
+
+// Get all personal loans from JSON
+const allPersonalLoans = personalLoansData.loans;
+---
+
+<Base {...pageData}>
+  <PersonalLoanHero />
+
+  <!-- Main Content Area -->
+  <section class="py-12 md:py-16">
+    <div class="container">
+      <div class="flex flex-col gap-8 lg:flex-row lg:gap-12">
+        <!-- Sidebar Filters -->
+        <div class="lg:w-72 lg:flex-shrink-0">
+          <LoanFilterSidebar />
+        </div>
+
+        <!-- Personal Loan Listings -->
+        <div class="flex-1 space-y-8">
+          <!-- Results Count and Sort -->
+          <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <h2 id="results-count" class="text-2xl font-bold text-dark">
+              We found {allPersonalLoans.length} Personal Loans for you!
+            </h2>
+            <div class="sm:w-64">
+              <SortDropdown />
+            </div>
+          </div>
+
+          <!-- Personal Loan List -->
+          <div id="loan-list" class="space-y-6">
+            {allPersonalLoans.map((loan) => <PersonalLoanItem {...loan} />)}
+          </div>
+
+          <!-- No Results Message (hidden by default) -->
+          <div id="no-results" class="hidden rounded-lg bg-gray-100 p-8 text-center">
+            <div data-lucide="search-x" class="mx-auto mb-4 h-16 w-16 text-gray-400"></div>
+            <h3 class="mb-2 text-xl font-bold text-dark">No loans found</h3>
+            <p class="text-gray-600">Try adjusting your filters to see more results.</p>
+          </div>
+
+          <!-- Load More (hidden when using filters) -->
+          <div id="load-more-section" class="flex justify-center pt-8">
+            <button
+              type="button"
+              class="btn btn-outline btn-md hover:bg-primary hover:text-white hover:border-primary"
+            >
+              Load More Loans
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<script define:vars={{ allPersonalLoans }}>
+  // Personal Loan Filtering and Sorting System
+  document.addEventListener("DOMContentLoaded", () => {
+    let loans = [...allPersonalLoans];
+    let currentFilters = {
+      features: [],
+      bank: "all",
+    };
+    let currentSort = "featured";
+
+    // Get DOM elements
+    const loanList = document.getElementById("loan-list");
+    const resultsCount = document.getElementById("results-count");
+    const noResults = document.getElementById("no-results");
+    const sortSelect = document.getElementById("sort-select");
+    const filterInputs = document.querySelectorAll(".filter-input");
+
+    // Initialize filters
+    filterInputs.forEach((input) => {
+      input.addEventListener("change", handleFilterChange);
+    });
+
+    // Initialize sort
+    if (sortSelect) {
+      sortSelect.addEventListener("change", handleSortChange);
+    }
+
+    function handleFilterChange(event) {
+      const filterType = event.target.dataset.filterType;
+      const filterValue = event.target.dataset.filterValue;
+      const isChecked = event.target.checked;
+
+      if (event.target.type === "checkbox") {
+        // Handle checkbox filters (features)
+        if (isChecked) {
+          if (!currentFilters[filterType].includes(filterValue)) {
+            currentFilters[filterType].push(filterValue);
+          }
+        } else {
+          currentFilters[filterType] = currentFilters[filterType].filter(
+            (v) => v !== filterValue
+          );
+        }
+      } else if (event.target.type === "radio") {
+        // Handle radio filters (bank)
+        currentFilters[filterType] = filterValue;
+      }
+
+      applyFiltersAndSort();
+    }
+
+    function handleSortChange(event) {
+      currentSort = event.target.value;
+      applyFiltersAndSort();
+    }
+
+    function applyFiltersAndSort() {
+      // Start with all loans
+      let filteredLoans = [...allPersonalLoans];
+
+      // Apply feature filters
+      if (currentFilters.features.length > 0) {
+        filteredLoans = filteredLoans.filter((loan) => {
+          return currentFilters.features.some((feature) =>
+            loan.features?.includes(feature)
+          );
+        });
+      }
+
+      // Apply bank filter
+      if (currentFilters.bank !== "all") {
+        filteredLoans = filteredLoans.filter(
+          (loan) => loan.bank === currentFilters.bank
+        );
+      }
+
+      // Apply sorting
+      filteredLoans = sortLoans(filteredLoans, currentSort);
+
+      // Update the display
+      renderLoans(filteredLoans);
+    }
+
+    function sortLoans(loansToSort, sortType) {
+      const sorted = [...loansToSort];
+
+      switch (sortType) {
+        case "featured":
+          return sorted.sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
+
+        case "interest-low":
+          return sorted.sort((a, b) => {
+            const rateA = parseFloat(a.interestRate.match(/[\d.]+/)?.[0] || "999");
+            const rateB = parseFloat(b.interestRate.match(/[\d.]+/)?.[0] || "999");
+            return rateA - rateB;
+          });
+
+        case "interest-high":
+          return sorted.sort((a, b) => {
+            const rateA = parseFloat(a.interestRate.match(/[\d.]+/)?.[0] || "0");
+            const rateB = parseFloat(b.interestRate.match(/[\d.]+/)?.[0] || "0");
+            return rateB - rateA;
+          });
+
+        case "amount-low":
+          return sorted.sort((a, b) => {
+            const amtA = parseFloat(a.totalAmount.replace(/,/g, ""));
+            const amtB = parseFloat(b.totalAmount.replace(/,/g, ""));
+            return amtA - amtB;
+          });
+
+        case "amount-high":
+          return sorted.sort((a, b) => {
+            const amtA = parseFloat(a.totalAmount.replace(/,/g, ""));
+            const amtB = parseFloat(b.totalAmount.replace(/,/g, ""));
+            return amtB - amtA;
+          });
+
+        case "name-az":
+          return sorted.sort((a, b) => a.loanName.localeCompare(b.loanName));
+
+        case "name-za":
+          return sorted.sort((a, b) => b.loanName.localeCompare(a.loanName));
+
+        default:
+          return sorted;
+      }
+    }
+
+    function renderLoans(loansToRender) {
+      // Update results count
+      if (resultsCount) {
+        resultsCount.textContent = `We found ${loansToRender.length} Personal Loans for you!`;
+      }
+
+      // Show/hide no results message
+      if (loansToRender.length === 0) {
+        if (loanList) loanList.style.display = "none";
+        if (noResults) noResults.classList.remove("hidden");
+      } else {
+        if (loanList) loanList.style.display = "block";
+        if (noResults) noResults.classList.add("hidden");
+
+        // Render loans
+        if (loanList) {
+          loanList.innerHTML = loansToRender
+            .map((loan) => createLoanHTML(loan))
+            .join("");
+        }
+      }
+
+      // Re-initialize Lucide icons for dynamically added content
+      if (window.lucide) {
+        window.lucide.createIcons();
+      }
+    }
+
+    function createLoanHTML(loan) {
+      const badgesHTML = loan.badges
+        ? loan.badges
+            .map((badge) => {
+              const isExclusive = badge.toLowerCase().includes('exclusive');
+              const badgeClass = isExclusive
+                ? "bg-yellow-400 text-gray-900"
+                : "bg-slate-800 text-white";
+              return `<span class="inline-block rounded px-3 py-1 text-xs font-bold uppercase ${badgeClass}">${badge}</span>`;
+            })
+            .join("")
+        : "";
+
+      const promotionHTML = loan.promotion
+        ? `
+        <div class="mt-6 rounded-lg bg-cyan-50 border-2 border-cyan-100 p-4">
+          <div class="flex items-start justify-between gap-4">
+            <div class="flex-1">
+              <h4 class="mb-2 font-bold text-gray-900">[${loan.promotion.title}]</h4>
+              <p class="mb-3 text-sm text-gray-700">${loan.promotion.description}</p>
+              ${
+                loan.promotion.terms
+                  ? `<p class="text-xs text-cyan-700">${loan.promotion.terms}</p>`
+                  : ""
+              }
+              ${
+                loan.promotion.validUntil
+                  ? `<p class="mt-2 text-xs font-semibold text-gray-600">${loan.promotion.validUntil}</p>`
+                  : ""
+              }
+            </div>
+            ${
+              loan.promotion.rewardAmount
+                ? `<div class="flex-shrink-0">
+                  <div class="flex h-20 w-20 flex-col items-center justify-center rounded-full bg-gradient-to-br from-yellow-400 to-yellow-500 text-center">
+                    <p class="text-xs font-semibold uppercase text-gray-900">UP TO</p>
+                    <p class="text-lg font-bold text-gray-900">$${loan.promotion.rewardAmount}</p>
+                    <p class="text-xs font-semibold uppercase text-gray-900">CASH</p>
+                  </div>
+                </div>`
+                : ""
+            }
+          </div>
+        </div>
+      `
+        : "";
+
+      return `
+        <div class="personal-loan-item rounded-xl border-2 border-gray-200 bg-white p-6 shadow-sm transition-shadow duration-300 hover:shadow-lg">
+          ${badgesHTML ? `<div class="mb-4 flex flex-wrap gap-2">${badgesHTML}</div>` : ""}
+
+          <div class="mb-6 flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
+            <div class="flex items-center gap-4 lg:w-48">
+              <div class="flex h-20 w-20 flex-shrink-0 items-center justify-center overflow-hidden rounded-lg bg-white border-2 border-gray-100 p-2">
+                <img src="${loan.lenderLogo}" alt="${loan.lenderName}" class="h-full w-full object-contain" />
+              </div>
+              <div>
+                <h3 class="text-lg font-bold text-gray-900">${loan.loanName}</h3>
+              </div>
+            </div>
+
+            <div class="flex flex-wrap gap-4 lg:flex-1 lg:justify-center">
+              <div class="loan-detail flex-1 min-w-[140px]">
+                <p class="mb-1 text-2xl font-bold text-gray-900">${loan.interestRate}</p>
+                <p class="text-xs text-gray-600">Interest Rates${loan.interestRateNote ? '<sup class="ml-0.5">1</sup>' : ""}</p>
+                ${loan.eir ? `<p class="mt-1 text-xs text-gray-500">EIR: ${loan.eir}</p>` : ""}
+              </div>
+
+              <div class="loan-detail flex-1 min-w-[140px]">
+                <p class="mb-1 text-2xl font-bold text-gray-900"><span class="text-base">S$</span>${loan.totalAmount}</p>
+                <p class="text-xs text-gray-600">Total Amount Payable</p>
+              </div>
+
+              <div class="loan-detail flex-1 min-w-[140px]">
+                <p class="mb-1 text-2xl font-bold text-gray-900"><span class="text-base">S$</span>${loan.processingFee}</p>
+                <p class="text-xs text-gray-600">Processing Fee<sup class="ml-0.5">2</sup></p>
+              </div>
+
+              <div class="loan-detail flex-1 min-w-[140px]">
+                <p class="mb-1 text-2xl font-bold text-gray-900"><span class="text-base">S$</span>${loan.perMonth}</p>
+                <p class="text-xs text-gray-600">Per Month<sup class="ml-0.5">2</sup></p>
+              </div>
+            </div>
+
+            <div class="flex flex-col items-start gap-2 lg:items-end lg:w-40">
+              <a href="${loan.applyUrl}" target="_blank" rel="noopener noreferrer" class="btn-apply whitespace-nowrap">APPLY NOW</a>
+            </div>
+          </div>
+
+          ${promotionHTML}
+
+          <div class="mt-4 space-y-2">
+            <details class="group">
+              <summary class="flex cursor-pointer items-center justify-between rounded-lg bg-gray-50 px-4 py-3 font-semibold text-gray-900 transition-colors hover:bg-gray-100">
+                <span class="flex items-center gap-2">
+                  <div data-lucide="info" class="h-5 w-5"></div>
+                  Loan Details
+                </span>
+                <div data-lucide="chevron-down" class="h-5 w-5 transition-transform group-open:rotate-180"></div>
+              </summary>
+              <div class="mt-2 rounded-lg border-2 border-gray-100 bg-white p-4">
+                <p class="text-sm text-gray-700">Detailed loan information including terms, conditions, and requirements will be displayed here.</p>
+              </div>
+            </details>
+
+            <details class="group">
+              <summary class="flex cursor-pointer items-center justify-between rounded-lg bg-gray-50 px-4 py-3 font-semibold text-gray-900 transition-colors hover:bg-gray-100">
+                <span class="flex items-center gap-2">
+                  <div data-lucide="file-text" class="h-5 w-5"></div>
+                  Eligibility & Requirements
+                </span>
+                <div data-lucide="chevron-down" class="h-5 w-5 transition-transform group-open:rotate-180"></div>
+              </summary>
+              <div class="mt-2 rounded-lg border-2 border-gray-100 bg-white p-4">
+                <p class="text-sm text-gray-700">Eligibility criteria and required documents will be displayed here.</p>
+              </div>
+            </details>
+          </div>
+        </div>
+      `;
+    }
+
+    // Initial render with default sort (featured)
+    applyFiltersAndSort();
+  });
+</script>

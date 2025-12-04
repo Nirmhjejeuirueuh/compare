@@ -1,0 +1,179 @@
+---
+/**
+ * PersonalLoanHero Component
+ * Hero section for personal loan comparison page with breadcrumb, title, and search form
+ */
+
+interface Props {
+  breadcrumb?: Array<{ label: string; url?: string }>;
+  title?: string;
+  description?: string;
+}
+
+const {
+  breadcrumb = [
+    { label: "Home", url: "/" },
+    { label: "Personal Loan" },
+  ],
+  title = "Best Personal Loans with Low Interest Rates & Fast Approval in Singapore 2025",
+  description = "Find and compare top loan offers in Singapore from leading banks and licensed lenders",
+} = Astro.props;
+---
+
+<section class="personal-loan-hero relative overflow-hidden bg-gradient-to-br from-slate-800 via-slate-900 to-slate-800 py-12 md:py-16">
+  <div class="container">
+    <!-- Breadcrumb -->
+    <nav class="mb-6" aria-label="Breadcrumb">
+      <ol class="flex items-center gap-2 text-sm">
+        {
+          breadcrumb.map((item, index) => (
+            <li class="flex items-center gap-2">
+              {index > 0 && (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="text-white/50"
+                >
+                  <path d="m9 18 6-6-6-6" />
+                </svg>
+              )}
+              {item.url ? (
+                <a
+                  href={item.url}
+                  class="text-white/70 hover:text-white transition-colors"
+                >
+                  {item.label}
+                </a>
+              ) : (
+                <span class="text-white font-medium">{item.label}</span>
+              )}
+            </li>
+          ))
+        }
+      </ol>
+    </nav>
+
+    <!-- Title and Description -->
+    <div class="mb-8 max-w-4xl">
+      <h1 class="mb-4 text-3xl font-bold leading-tight text-white md:text-4xl lg:text-5xl">
+        {title}
+      </h1>
+      <div class="flex items-start gap-3">
+        <p class="text-base leading-relaxed text-white/85 md:text-lg">
+          {description}
+        </p>
+        <button
+          type="button"
+          class="flex-shrink-0 rounded-full p-1 text-white/70 transition-all duration-200 hover:bg-white/10 hover:text-white"
+          aria-label="Read more"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="m6 9 6 6 6-6"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Search Form -->
+    <div class="rounded-lg bg-slate-700/50 backdrop-blur-sm p-3">
+      <form class="flex flex-col gap-3 sm:flex-row sm:flex-wrap lg:flex-nowrap">
+        <!-- Loan Amount -->
+        <div class="flex flex-col flex-1 min-w-[200px]">
+          <label for="loan-amount" class="mb-1.5 text-xs text-gray-300 font-medium">Loan Amount</label>
+          <div class="flex items-center gap-2 rounded-md bg-white px-3 py-2.5">
+            <span class="text-gray-500 text-sm">S$</span>
+            <input
+              type="number"
+              id="loan-amount"
+              value="10000"
+              class="w-full border-0 p-0 text-gray-900 text-lg font-medium focus:outline-none focus:ring-0"
+              placeholder="10,000"
+            />
+          </div>
+        </div>
+
+        <!-- Loan Tenure -->
+        <div class="flex flex-col flex-1 min-w-[150px]">
+          <label for="loan-tenure" class="mb-1.5 text-xs text-gray-300 font-medium">Loan Tenure</label>
+          <select
+            id="loan-tenure"
+            class="rounded-md border-0 bg-white px-3 py-2.5 text-gray-900 text-lg font-medium focus:outline-none focus:ring-2 focus:ring-primary"
+          >
+            <option value="1">1 year</option>
+            <option value="2">2 years</option>
+            <option value="3">3 years</option>
+            <option value="4">4 years</option>
+            <option value="5">5 years</option>
+          </select>
+        </div>
+
+        <!-- Citizenship Status -->
+        <div class="flex flex-col flex-1 min-w-[200px]">
+          <label for="citizenship" class="mb-1.5 text-xs text-gray-300 font-medium">Citizenship Status</label>
+          <select
+            id="citizenship"
+            class="rounded-md border-0 bg-white px-3 py-2.5 text-gray-900 text-lg font-medium focus:outline-none focus:ring-2 focus:ring-primary"
+          >
+            <option value="singaporean">Singaporean/PR</option>
+            <option value="foreigner">Foreigner</option>
+          </select>
+        </div>
+
+        <!-- Monthly Income -->
+        <div class="flex flex-col flex-1 min-w-[200px]">
+          <label for="monthly-income" class="mb-1.5 text-xs text-gray-300 font-medium">Monthly Income</label>
+          <div class="flex items-center gap-2 rounded-md bg-white px-3 py-2.5">
+            <span class="text-gray-500 text-sm">S$</span>
+            <input
+              type="number"
+              id="monthly-income"
+              value="3500"
+              class="w-full border-0 p-0 text-gray-900 text-lg font-medium focus:outline-none focus:ring-0"
+              placeholder="3,500"
+            />
+          </div>
+        </div>
+
+        <!-- Loan Type -->
+        <div class="flex flex-col flex-1 min-w-[200px]">
+          <label for="loan-type" class="mb-1.5 text-xs text-gray-300 font-medium">Loan Type</label>
+          <select
+            id="loan-type"
+            class="rounded-md border-0 bg-white px-3 py-2.5 text-gray-900 text-lg font-medium focus:outline-none focus:ring-2 focus:ring-primary"
+          >
+            <option value="personal">Personal Loan</option>
+            <option value="business">Business Loan</option>
+            <option value="education">Education Loan</option>
+          </select>
+        </div>
+
+        <!-- Search Button -->
+        <div class="flex flex-col justify-end w-full sm:w-auto">
+          <button
+            type="submit"
+            class="rounded-md bg-rose-500 px-10 py-3 font-bold text-white text-lg transition-colors duration-200 hover:bg-rose-600 whitespace-nowrap h-[46px]"
+          >
+            Search
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

@@ -50,25 +50,19 @@ const {
 } = Astro.props;
 ---
 
-<section class="finance-hero relative overflow-hidden py-16 md:py-20 lg:py-24">
-  <!-- Gradient Background -->
-  <div class="absolute inset-0 -z-10 bg-gradient-to-br from-teal-600 via-cyan-600 to-purple-700">
-    <!-- Additional gradient overlay for depth -->
-    <div class="absolute inset-0 bg-gradient-to-r from-teal-600/50 to-purple-700/50"></div>
-  </div>
-
+<section class="finance-hero relative overflow-hidden bg-white py-16 md:py-20 lg:py-24">
   <div class="container">
     <!-- Hero Content -->
     <div class="mx-auto max-w-6xl space-y-10 md:space-y-12">
       <!-- Tagline and Title -->
-      <div class="space-y-4 text-center text-white">
+      <div class="space-y-4 text-center">
         {tagline && (
-          <p class="text-sm font-medium uppercase tracking-wide opacity-90 md:text-base">
+          <p class="text-sm font-semibold uppercase tracking-wider text-gray-600 md:text-base">
             {tagline}
           </p>
         )}
         {title && (
-          <h1 class="text-4xl font-bold leading-tight md:text-5xl lg:text-6xl">
+          <h1 class="text-4xl font-bold leading-tight text-gray-900 md:text-5xl lg:text-6xl">
             {title}
           </h1>
         )}
@@ -96,12 +90,12 @@ const {
         data-aos-delay="400"
       >
         {ctaHeading && (
-          <h2 class="text-2xl font-bold text-white md:text-3xl lg:text-4xl">
+          <h2 class="text-2xl font-bold text-gray-900 md:text-3xl lg:text-4xl">
             {ctaHeading}
           </h2>
         )}
         {ctaDescription && (
-          <p class="text-base text-white/90 md:text-lg">
+          <p class="text-base text-gray-600 md:text-lg">
             {ctaDescription}
           </p>
         )}
@@ -127,30 +121,30 @@ const {
 
 <style>
   .finance-hero {
-    min-height: 600px;
+    min-height: 500px;
   }
 
   @media (min-width: 768px) {
     .finance-hero {
-      min-height: 700px;
+      min-height: 600px;
     }
   }
 
   @media (min-width: 1024px) {
     .finance-hero {
-      min-height: 750px;
+      min-height: 650px;
     }
   }
 
-  /* Custom outline button style for gradient background */
+  /* Custom outline button style for white background */
   :global(.finance-hero-outline-btn) {
     background-color: transparent !important;
-    border: 2px solid white !important;
-    color: white !important;
+    border: 2px solid var(--color-primary) !important;
+    color: var(--color-primary) !important;
   }
 
   :global(.finance-hero-outline-btn:hover) {
-    background-color: white !important;
-    color: var(--color-primary) !important;
+    background-color: var(--color-primary) !important;
+    color: white !important;
   }
 </style>
