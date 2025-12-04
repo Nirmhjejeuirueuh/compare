@@ -39,13 +39,7 @@ const {
 } = Astro.props;
 ---
 
-<section class="credit-card-hero relative overflow-hidden py-12 md:py-16">
-  <!-- Gradient Background -->
-  <div class="absolute inset-0 -z-10 bg-gradient-to-br from-indigo-700 via-purple-700 to-pink-700">
-    <!-- Additional gradient overlay for depth -->
-    <div class="absolute inset-0 bg-gradient-to-r from-indigo-800/60 to-pink-800/60"></div>
-  </div>
-
+<section class="credit-card-hero relative overflow-hidden bg-gradient-to-br from-slate-800 via-slate-900 to-slate-800 py-12 md:py-16 lg:py-20">
   <div class="container">
     <!-- Breadcrumb -->
     <nav class="mb-6" aria-label="Breadcrumb">
@@ -86,34 +80,13 @@ const {
     </nav>
 
     <!-- Title and Description -->
-    <div class="mb-8 max-w-4xl">
-      <h1 class="mb-4 text-3xl font-bold text-white md:text-4xl lg:text-5xl">
+    <div class="mb-8 max-w-3xl">
+      <h1 class="mb-4 text-3xl font-bold leading-tight text-white md:text-4xl lg:text-5xl">
         {title}
       </h1>
-      <div class="flex items-start gap-2">
-        <p class="text-base text-white/90 md:text-lg">
-          {description}
-        </p>
-        <button
-          type="button"
-          class="text-white/70 hover:text-white transition-colors flex-shrink-0"
-          aria-label="Read more"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path d="m6 9 6 6 6-6"></path>
-          </svg>
-        </button>
-      </div>
+      <p class="text-base leading-relaxed text-white/85 md:text-lg">
+        {description}
+      </p>
     </div>
 
     <!-- Filter Buttons -->

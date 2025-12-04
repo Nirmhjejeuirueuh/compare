@@ -117,16 +117,16 @@ const {
     </div>
 
     <!-- Apply Button -->
-    <div class="flex items-center md:flex-col md:items-end">
-      <CustomButton
-        label="Apply Now"
-        url={applyUrl}
-        variant="fill"
-        class="btn-md"
+    <div class="flex flex-col items-start gap-2 md:items-end">
+      <a
+        href={applyUrl}
         target="_blank"
         rel="noopener noreferrer"
-      />
-      <p class="mt-2 text-xs text-gray-500">on {bankName}'s secure site</p>
+        class="btn-apply"
+      >
+        Apply Now
+      </a>
+      <p class="text-xs text-gray-500">on {bankName}'s secure site</p>
     </div>
   </div>
 

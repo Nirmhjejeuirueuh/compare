@@ -1,9 +1,9 @@
 /* Header */
 .header {
-  @apply relative z-30 w-full;
+  @apply relative z-30 w-full bg-slate-900;
 
   &.sticky-header {
-    @apply sticky top-6 z-50 transition-[transform,opacity,0.3s_background] duration-500;
+    @apply sticky top-0 z-50 transition-all duration-300;
   }
 
   &.scroll-up {
@@ -15,22 +15,22 @@
   &.scroll-down,
   &.scroll-up {
     > .container {
-      @apply lg:max-w-5xl!;
+      @apply max-w-full!;
     }
 
     .nav-item {
       > .nav-link {
-        @apply lg:px-4 lg:py-2 xl:px-4;
+        @apply lg:px-4 lg:py-3 xl:px-6;
       }
     }
   }
 
   /* Header Customize */
   > .container {
-    @apply mx-auto transition-all duration-300 ease-[cubic-bezier(0.617,1.5,0.68,1)];
+    @apply mx-auto max-w-full transition-all duration-300;
 
     > nav {
-      @apply rounded-full border bg-white/70 backdrop-blur-md;
+      @apply border-0 bg-transparent;
     }
   }
 }
@@ -45,7 +45,7 @@ header {
     @apply hidden;
   }
   .logo-text {
-    @apply text-dark;
+    @apply text-white;
   }
 }
 
@@ -64,10 +64,10 @@ footer {
 
 /* Language Switcher */
 .header .language-switcher {
-  @apply text-primary relative rounded-full border;
+  @apply text-white relative border border-white/20;
 
   .language-switcher-button {
-    @apply flex items-center gap-1.5 px-3.5 py-1.5 text-inherit uppercase;
+    @apply flex items-center gap-1.5 px-3.5 py-2 text-inherit uppercase;
 
     svg * {
       @apply stroke-current!;
@@ -78,10 +78,10 @@ footer {
     @apply hs-dropdown-open:opacity-100 absolute top-full right-0 min-w-32 space-y-px rounded-lg p-px opacity-0 transition-[opacity,margin] lg:transform-none!;
 
     li a {
-      @apply border-border-light hover:bg-light text-text-default block rounded-full border bg-white px-4 py-1.5 text-center transition;
+      @apply border-border-light hover:bg-slate-700 text-white block border border-slate-600 bg-slate-800 px-4 py-2 text-center transition;
 
       &.active {
-        @apply bg-primary/5 text-primary;
+        @apply bg-primary/20 text-primary;
       }
     }
   }
@@ -90,21 +90,21 @@ footer {
 /* Navbar */
 .navbar {
   @apply lg:mx-auto lg:flex!;
-  @apply flex max-h-[80vh] max-lg:left-0 max-lg:overflow-auto max-lg:rounded-3xl lg:relative lg:bg-transparent;
-  @apply max-lg:hs-dropdown-open:opacity-100 max-lg:top-full max-lg:z-40 max-lg:hidden max-lg:w-full max-lg:flex-col max-lg:space-y-1 max-lg:border max-lg:bg-white max-lg:p-2 max-lg:opacity-0 max-lg:transition-[opacity,margin] lg:items-center;
+  @apply flex max-h-[80vh] max-lg:left-0 max-lg:overflow-auto lg:relative lg:bg-transparent;
+  @apply max-lg:hs-dropdown-open:opacity-100 max-lg:top-full max-lg:z-40 max-lg:hidden max-lg:w-full max-lg:flex-col max-lg:space-y-1 max-lg:border max-lg:bg-slate-800 max-lg:p-4 max-lg:opacity-0 max-lg:transition-[opacity,margin] lg:items-center;
 
   .nav-item {
     @apply relative;
     > .nav-link {
-      @apply flex items-center rounded-full px-3 py-1.5 font-normal transition-all duration-300 sm:px-6 lg:px-4 lg:py-2 xl:px-6;
+      @apply flex items-center px-3 py-2 font-medium text-white transition-all duration-200 sm:px-4 lg:px-4 lg:py-3 xl:px-6;
     }
   }
 
   .nav-dropdown-link,
   .nav-link {
-    @apply text-text-default hs-dropdown-open:text-primary hover:text-primary hs-dropdown-open:bg-slate-50 hover:bg-slate-50 [&.nav-dropdown-link]:hover:bg-slate-50;
+    @apply text-white hover:text-white/80 hs-dropdown-open:text-white/90;
     &.nav-link-active {
-      @apply text-primary bg-slate-50;
+      @apply text-white;
     }
   }
 
@@ -115,7 +115,7 @@ footer {
 
   .nav-dropdown {
     .nav-dropdown-toggle {
-      @apply hs-dropdown-open:text-primary cursor-pointer select-none;
+      @apply hs-dropdown-open:text-white/90 cursor-pointer select-none text-white;
 
       svg {
         @apply inline-block;
@@ -123,11 +123,11 @@ footer {
     }
 
     .nav-dropdown-list {
-      @apply z-10 min-w-52 rounded-xl border bg-white p-1 max-lg:static!;
+      @apply z-10 min-w-52 rounded-lg border border-slate-700 bg-slate-800 p-2 max-lg:static!;
 
       .nav-dropdown-item {
         .nav-dropdown-link {
-          @apply rounded-full px-4 py-2 transition lg:px-5;
+          @apply rounded-lg px-4 py-2 text-white transition hover:bg-slate-700 lg:px-5;
         }
       }
     }

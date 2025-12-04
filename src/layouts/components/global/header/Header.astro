@@ -22,12 +22,12 @@ const { stickyHeader, navigationButton } = config.settings;
 
 <header
   class:list={[
-    "header group/header mt-5 transform",
+    "header group/header",
     { "sticky-header": stickyHeader },
   ]}>
-  <div class="relative container">
+  <div class="container mx-auto max-w-7xl">
     <nav
-      class="hs-dropdown relative flex items-center justify-between px-2 py-2.5 [--auto-close:inside] [--gpu-acceleration:false] [--strategy:absolute] lg:[--strategy:static]">
+      class="hs-dropdown relative flex items-center justify-between px-4 py-3 lg:px-6 [--auto-close:inside] [--gpu-acceleration:false] [--strategy:absolute] lg:[--strategy:static]">
       <Logo />
 
       <ul
@@ -77,7 +77,7 @@ const { stickyHeader, navigationButton } = config.settings;
           </div>
         )
       }
-      <NavToggleBtn />
+      <NavToggleBtn isDarkHeader={false} />
     </nav>
   </div>
   <script>
