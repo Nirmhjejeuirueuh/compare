@@ -6,7 +6,7 @@ draft: false
 
 Date d'entrée en vigueur : Juillet 2022
 
-Bienvenue sur Stella ("nous," "notre" ou "nos"). Votre vie privée est importante pour nous, et nous nous engageons à protéger les informations personnelles que vous partagez avec nous. Cette politique de confidentialité explique comment nous collectons, utilisons et protégeons vos informations lorsque vous visitez notre site web, https://www.stella.com ("Site Web").
+Bienvenue sur wealthify ("nous," "notre" ou "nos"). Votre vie privée est importante pour nous, et nous nous engageons à protéger les informations personnelles que vous partagez avec nous. Cette politique de confidentialité explique comment nous collectons, utilisons et protégeons vos informations lorsque vous visitez notre site web, https://www.wealthify.com ("Site Web").
 
 ### Informations que nous collectons
 
@@ -68,7 +68,7 @@ Depending on your location, you may have the following rights regarding your per
 - Restrict processing of your data
 - Withdraw consent for data usage
 
-To exercise your rights, please contact us at privacy@stella.com.
+To exercise your rights, please contact us at privacy@wealthify.com.
 
 ### Third-Party Links
 
@@ -86,8 +86,8 @@ We may update this Privacy Policy from time to time. Any changes will be posted 
 
 If you have any questions or concerns about this Privacy Policy, please contact us at:
 
-Stella
-Email: privacy@stella.com
-Address: 123 Stella Lane, Imaginary City, IC 12345, USA
+wealthify
+Email: privacy@wealthify.com
+Address: 123 wealthify Lane, Imaginary City, IC 12345, USA
 
-Thank you for trusting Stella with your personal information!
+Thank you for trusting wealthify with your personal information!

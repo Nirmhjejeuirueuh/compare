@@ -6,7 +6,7 @@ draft: false
 
 testimonialSection:
   enable: true
-  title: Que disent-ils **de Stella ?**
+  title: Que disent-ils **de wealthify ?**
   limit: 3 # Limite le nombre d'éléments affichés sur les pages autres que la liste.
 
 testimonialListPageSection:

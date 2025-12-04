@@ -151,7 +151,7 @@ list:
             content: |
               Fixed URL to create project templates not working after deprecating roadmap
 
-  - title: "Passkeys: A fast and secure way to log in to Stella"
+  - title: "Passkeys: A fast and secure way to log in to wealthify"
     version: 0.8.5
     date: 02 Feb, 2023
     content: |

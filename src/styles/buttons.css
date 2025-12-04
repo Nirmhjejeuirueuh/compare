@@ -16,14 +16,14 @@
   @apply text-light bg-black;
 }
 
-/* Apply Now Button - Pink with rounded corners */
+/* Apply Now Button - Green with rounded corners for growth/wealth theme */
 @utility btn-apply {
-  @apply bg-rose-500 text-white font-semibold px-8 py-3 md:px-10 md:py-4 rounded-xl hover:bg-rose-600 transition-colors duration-200 shadow-sm;
+  @apply bg-emerald-600 text-white font-semibold px-8 py-3 md:px-10 md:py-4 rounded-xl hover:bg-emerald-700 transition-colors duration-200 shadow-sm;
 }
 
-/* More Details Button - Blue outline with pill shape */
+/* More Details Button - Green outline with pill shape */
 @utility btn-details {
-  @apply border-2 border-blue-600 text-blue-600 font-semibold px-8 py-3 md:px-10 md:py-3.5 rounded-full hover:bg-blue-50 transition-colors duration-200;
+  @apply border-2 border-emerald-600 text-emerald-600 font-semibold px-8 py-3 md:px-10 md:py-3.5 rounded-full hover:bg-emerald-50 transition-colors duration-200;
 }
 
 /* Button Text Variant */

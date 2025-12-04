@@ -7,7 +7,7 @@ draft: false
 # Content for testimonial section shown on pages other than the list page
 testimonialSection:
   enable: true
-  title: What They Say **About Stella?**
+  title: What They Say **About wealthify?**
   limit: 3 # Limit the number of items to be displayed on other pages than the list page.
 
 # Content for testimonial section shown on the list page
