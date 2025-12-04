@@ -8,6 +8,32 @@
     },
     {
       "enable": true,
+      "name": "Compare",
+      "weight": 0,
+      "hasChildren": true,
+      "children": [
+        {
+          "enable": true,
+          "name": "Credit Cards",
+          "url": "/credit-card/",
+          "weight": 0
+        },
+        {
+          "enable": true,
+          "name": "Personal Loans",
+          "url": "/personal-loan/",
+          "weight": 0
+        },
+        {
+          "enable": true,
+          "name": "Investments",
+          "url": "/investment/",
+          "weight": 0
+        }
+      ]
+    },
+    {
+      "enable": false,
       "name": "Features",
       "weight": 0,
       "hasMegaMenu": true,
